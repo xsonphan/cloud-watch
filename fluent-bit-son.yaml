@@ -264,7 +264,7 @@ data:
         Name                tail
         Tag                 application.*
         Exclude_Path        /var/log/containers/cloudwatch-agent*, /var/log/containers/fluent-bit*, /var/log/containers/aws-node*, /var/log/containers/kube-proxy*
-        Path                /var/log/containers/*.log
+        Path                /var/log/containers/hasura-public-api*.log
         multiline.parser    docker, cri
         DB                  /var/fluent-bit/state/flb_container.db
         Mem_Buf_Limit       50MB
@@ -294,7 +294,6 @@ data:
         Match               application.*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/application
-        log_stream_prefix   ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
 
@@ -367,7 +366,7 @@ data:
         Match               host.*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/host/message
-        log_stream_prefix   ${HOST_NAME}-
+        log_stream_prefix   ${HOST_NAME}.
         auto_create_group   true
         extra_user_agent    container-insights
 
