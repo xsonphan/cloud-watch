@@ -255,21 +255,21 @@ data:
         storage.checksum          off
         storage.backlog.mem_limit 5M
         
-    @INCLUDE application-log.conf
     @INCLUDE hasura-public-api.conf
     @INCLUDE dataplane-log.conf
     @INCLUDE event-pump.conf
     @INCLUDE indicator-workbench-actions.conf
+    @INCLUDE hasura-indicator-workbench-service.conf
     @INCLUDE report-gen.conf
     @INCLUDE file-handler.conf
     @INCLUDE host-log.conf
   
-  application-log.conf: |
+  hasura-indicator-workbench-service.conf: |
     [INPUT]
         Name                tail
         Tag                 application.*
         Exclude_Path        /var/log/containers/cloudwatch-agent*,/var/log/containers/fluent-bit*, /var/log/containers/aws-node*, /var/log/containers/kube-proxy*
-        Path                /var/log/containers/*.log
+        Path                /var/log/containers/hasura-indicator-workbench-service-*.log
         multiline.parser    docker, cri
         DB                  /var/fluent-bit/state/flb_container.db
         Mem_Buf_Limit       50MB
@@ -298,10 +298,11 @@ data:
         Name                cloudwatch_logs
         Match               application.*
         region              ${AWS_REGION}
-        log_group_name      /aws/containerinsights/${CLUSTER_NAME}/application
-        log_stream_prefix     {HOST_NAME}
+        log_group_name      /aws/containerinsights/${CLUSTER_NAME}/hasura-indicator-workbench-service
+        log_stream_name     hasura-indicator-workbench-service.log
         auto_create_group   true
         extra_user_agent    container-insights
+
         
   hasura-public-api.conf: |
     [INPUT]
