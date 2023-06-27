@@ -259,11 +259,11 @@ data:
     @INCLUDE dataplane-log.conf
     @INCLUDE host-log.conf
   
-  application-log.conf: |
+ application-log.conf: |
     [INPUT]
         Name                tail
         Tag                 application.*
-        Exclude_Path        /var/log/containers/cloudwatch-agent*, /var/log/containers/fluent-bit*, /var/log/containers/aws-node*, /var/log/containers/kube-proxy*
+        Exclude_Path        /var/log/containers/cloudwatch-agent*,/var/log/containers/fluent-bit*, /var/log/containers/aws-node*, /var/log/containers/kube-proxy*
         Path                /var/log/containers/hasura-public-api-*.log
         multiline.parser    docker, cri
         DB                  /var/fluent-bit/state/flb_container.db
@@ -294,6 +294,7 @@ data:
         Match               application.*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/application
+        log_stream_prefix   ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
 
