@@ -287,10 +287,6 @@ data:
         Use_Kubelet         On
         Kubelet_Port        10250
         Buffer_Size         0
-    [FILTER]
-        Name                grep
-        Match               application.*
-        Regex               stream ip-10-40-0-154.ap-southeast-1.compute.internal-application.var.log.containers.hasura-public-api-*
 
 
     [OUTPUT]
