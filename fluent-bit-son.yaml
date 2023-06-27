@@ -312,7 +312,7 @@ data:
     [INPUT]
         Name                tail
         Tag                 dataplane.tail.*
-        Path                /var/log/containers/aws-node*
+        Path                /var/log/containers/aws-node*, /var/log/containers/kube-proxy*
         multiline.parser    docker, cri
         DB                  /var/fluent-bit/state/flb_dataplane_tail.db
         Mem_Buf_Limit       50MB
