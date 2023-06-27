@@ -273,6 +273,7 @@ data:
         Rotate_Wait         30
         storage.type        filesystem
         Read_from_Head      ${READ_FROM_HEAD}
+
     [FILTER]
         Name                kubernetes
         Match               application.*
@@ -288,7 +289,6 @@ data:
         Kubelet_Port        10250
         Buffer_Size         0
 
-
     [OUTPUT]
         Name                cloudwatch_logs
         Match               application.*
@@ -296,6 +296,7 @@ data:
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/application
         auto_create_group   true
         extra_user_agent    container-insights
+
 
   dataplane-log.conf: |
     [INPUT]
