@@ -254,19 +254,18 @@ data:
         storage.sync              normal
         storage.checksum          off
         storage.backlog.mem_limit 5M
-
+        
     @INCLUDE application-log.conf
     @INCLUDE hasura-public-api.conf
     @INCLUDE dataplane-log.conf
-    @INCLUDE report-gen
     @INCLUDE host-log.conf
-    
+  
   application-log.conf: |
     [INPUT]
         Name                tail
         Tag                 application.*
         Exclude_Path        /var/log/containers/cloudwatch-agent*, /var/log/containers/fluent-bit*, /var/log/containers/aws-node*, /var/log/containers/kube-proxy*
-        Path                /var/log/containers/*.log
+        Path                /var/log/containers/hasura-public-api*.log
         multiline.parser    docker, cri
         DB                  /var/fluent-bit/state/flb_container.db
         Mem_Buf_Limit       50MB
