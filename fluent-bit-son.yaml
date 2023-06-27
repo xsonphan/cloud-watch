@@ -304,7 +304,6 @@ data:
         Tag                 dataplane.systemd.*
         Systemd_Filter      _SYSTEMD_UNIT=docker.service
         Systemd_Filter      _SYSTEMD_UNIT=containerd.service
-        Systemd_Filter      _SYSTEMD_UNIT=kubelet.service
         DB                  /var/fluent-bit/state/systemd.db
         Path                /var/log/journal
         Read_From_Tail      ${READ_FROM_TAIL}
@@ -312,7 +311,7 @@ data:
     [INPUT]
         Name                tail
         Tag                 dataplane.tail.*
-        Path                /var/log/containers/aws-node*, /var/log/containers/kube-proxy*
+        Path                /var/log/containers/aws-node*
         multiline.parser    docker, cri
         DB                  /var/fluent-bit/state/flb_dataplane_tail.db
         Mem_Buf_Limit       50MB
