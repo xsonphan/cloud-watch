@@ -255,12 +255,12 @@ data:
         storage.checksum          off
         storage.backlog.mem_limit 5M
         
-    @INCLUDE application-log.conf
+    @INCLUDE hasura-public-api.conf
     @INCLUDE hasura-indicator-worbench-service
     @INCLUDE dataplane-log.conf
     @INCLUDE host-log.conf
   
-  application-log.conf: |
+  hasura-public-api.conf: |
     [INPUT]
         Name                tail
         Tag                 application.*
