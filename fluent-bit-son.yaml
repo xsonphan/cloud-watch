@@ -255,12 +255,12 @@ data:
         storage.checksum          off
         storage.backlog.mem_limit 5M
         
-    @INCLUDE hasura-public-api.conf
+    @INCLUDE application-log.conf
     @INCLUDE hasura-indicator-worbench-service
     @INCLUDE dataplane-log.conf
     @INCLUDE host-log.conf
   
-hasura-public-api.conf: |
+  application-log.conf: |
     [INPUT]
         Name                tail
         Tag                 application.*
@@ -295,9 +295,9 @@ hasura-public-api.conf: |
         Match               application.*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/application
+        log_stream_prefix   ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
-
 
   dataplane-log.conf: |
     [INPUT]
