@@ -256,7 +256,6 @@ data:
         storage.backlog.mem_limit 5M
         
     @INCLUDE application-log.conf
-    @INCLUDE hasura-public-api.conf
     @INCLUDE dataplane-log.conf
     @INCLUDE host-log.conf
   
