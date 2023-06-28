@@ -296,7 +296,7 @@ data:
         Match               application.*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/event-pump
-        log_stream_name     event-pump-${CONTAINER_ID}.log
+        log_stream_name     event-pump-${POD_ID}.log
         auto_create_group   true
         extra_user_agent    container-insights
         
@@ -305,7 +305,7 @@ data:
         Name                tail
         Tag                 application.*
         Exclude_Path        /var/log/containers/cloudwatch-agent*,/var/log/containers/fluent-bit*, /var/log/containers/aws-node*, /var/log/containers/kube-proxy*
-        Path                /var/log/containers/hasura-public-api-*.log
+        Path                /var/log/containers/hasura-public-api*.log
         multiline.parser    docker, cri
         DB                  /var/fluent-bit/state/flb_container.db
         Mem_Buf_Limit       50MB
