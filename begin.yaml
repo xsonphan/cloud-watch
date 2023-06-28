@@ -256,6 +256,7 @@ data:
         storage.backlog.mem_limit 5M
         
     @INCLUDE hasura-public-api.conf
+    @INCLUDE application.conf
     @INCLUDE dataplane-log.conf
     @INCLUDE host-log.conf
 
@@ -389,6 +390,9 @@ data:
         log_stream_prefix   ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
+        buffer_queue_limit  20
+        flush_interval      5s
+        retry_limit         3
 
   host-log.conf: |
     [INPUT]
@@ -415,7 +419,10 @@ data:
         log_stream_prefix   ${HOST_NAME}.
         auto_create_group   true
         extra_user_agent    container-insights
-
+        buffer_queue_limit  20
+        flush_interval      5s
+        retry_limit         3
+        
   parsers.conf: |
     [PARSER]
         Name                syslog
