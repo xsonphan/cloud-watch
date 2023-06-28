@@ -291,7 +291,7 @@ data:
         
      [OUTPUT]
         Name                cloudwatch_logs
-        Match               application.var.log.report-gen
+        Match               application.var.log.containers.report-gen
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/report-gen
         log_stream_prefix   ${HOST_NAME}-
@@ -300,7 +300,7 @@ data:
 
      [OUTPUT]
         Name                cloudwatch_logs
-        Match               application.var.log.indicator-workbench-actions*
+        Match               application.var.log.containers.indicator-workbench-actions*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/indicator-workbench-actions
         log_stream_prefix   ${HOST_NAME}-
@@ -309,7 +309,7 @@ data:
 
      [OUTPUT]
         Name                cloudwatch_logs
-        Match               application.var.log.hasura-indicator-workbench-service*
+        Match               application.var.log.containers.hasura-indicator-workbench-service*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/hasura-indicator-workbench-service
         log_stream_prefix   ${HOST_NAME}-
@@ -318,7 +318,7 @@ data:
 
      [OUTPUT]
         Name                cloudwatch_logs
-        Match               application.var.log.file-handler*
+        Match               application.var.log.containers.file-handler*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/file-handler
         log_stream_prefix   ${HOST_NAME}-
@@ -327,7 +327,7 @@ data:
 
      [OUTPUT]
         Name                cloudwatch_logs
-        Match               application.var.log.csi-secrets-store*
+        Match               application.var.log.containers.csi-secrets-store*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/csi-secrets-store
         log_stream_prefix   ${HOST_NAME}-
@@ -336,7 +336,7 @@ data:
 
     [OUTPUT]
         Name                cloudwatch_logs
-        Match               application.var.log.clamav-signatures*
+        Match               application.var.log.containers.clamav-signatures*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/clamav-signatures*
         log_stream_prefix   ${HOST_NAME}-
