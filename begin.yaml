@@ -299,9 +299,6 @@ data:
         log_stream_name     event-pump-${CONTAINER_ID}.log
         auto_create_group   true
         extra_user_agent    container-insights
-        buffer_queue_limit  20
-        flush_interval      5s
-        retry_limit         3
         
   hasura-public-api.conf: |
     [INPUT]
@@ -341,9 +338,6 @@ data:
         log_stream_name     $hostname
         auto_create_group   true
         extra_user_agent    container-insights
-        buffer_queue_limit  20
-        flush_interval      5s
-        retry_limit         3
 
   application.conf: |
     [INPUT]
@@ -383,9 +377,6 @@ data:
         log_stream_prefix   ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
-        buffer_queue_limit  20
-        flush_interval      5s
-        retry_limit         3
         
   dataplane-log.conf: |
     [INPUT]
@@ -432,9 +423,6 @@ data:
         log_stream_prefix   ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
-        buffer_queue_limit  20
-        flush_interval      5s
-        retry_limit         3
 
   host-log.conf: |
     [INPUT]
@@ -461,9 +449,6 @@ data:
         log_stream_prefix   ${HOST_NAME}.
         auto_create_group   true
         extra_user_agent    container-insights
-        buffer_queue_limit  20
-        flush_interval      5s
-        retry_limit         3
         
   parsers.conf: |
     [PARSER]
