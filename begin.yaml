@@ -305,7 +305,7 @@ data:
         Name                tail
         Tag                 application.*
         Exclude_Path        /var/log/containers/cloudwatch-agent*,/var/log/containers/fluent-bit*, /var/log/containers/aws-node*, /var/log/containers/kube-proxy*
-        Path                /var/log/containers/hasura-public-api*.log
+        Path                /var/log/containers/hasura-public-api-75f7c7ff4c-rkfjn_default_hasura-995a0ca7ba3f457e4c7fd843367f03345cf9119d0bb1d13aa83f218ae9af404c.log
         multiline.parser    docker, cri
         DB                  /var/fluent-bit/state/flb_container.db
         Mem_Buf_Limit       50MB
