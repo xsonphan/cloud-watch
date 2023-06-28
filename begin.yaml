@@ -292,7 +292,7 @@ data:
         
     [OUTPUT]
         Name                cloudwatch_logs
-        Match               application.hasura-public-api*
+        Match               application.hasura-public-api.*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/hasura
         log_stream_prefix   ${HOST_NAME}-
@@ -301,7 +301,7 @@ data:
 
     [OUTPUT]
         Name                cloudwatch_logs
-        Match               application.event-pump*
+        Match               application.event-pump.*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/event-pump
         log_stream_prefix   ${HOST_NAME}-
