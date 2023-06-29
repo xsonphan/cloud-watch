@@ -304,7 +304,7 @@ data:
         Match               application.var.log.containers.hasura-indicator*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/hasura-indicator
-        log_stream_name     ${POD_NAME}
+        log_stream_name     ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
 
@@ -313,7 +313,7 @@ data:
         Match               application.var.log.containers.report*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/report-gen
-        log_stream_name     ${POD_NAME}
+        log_stream_name     ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
 
@@ -323,7 +323,7 @@ data:
         Match               application.var.log.containers.file-handler*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/file-handler
-        log_stream_name     ${POD_NAME}
+        log_stream_name     ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
 
@@ -333,7 +333,7 @@ data:
         Match               application.var.log.containers.indicator-workbench*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/indicator-workbench
-        log_stream_name     ${POD_NAME}
+        log_stream_name     ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
    
@@ -386,7 +386,6 @@ data:
         Rename              _HOSTNAME                   hostname
         Rename              _SYSTEMD_UNIT               systemd_unit
         Rename              MESSAGE                     message
-        Remove_regex        ^((?!hostname|systemd_unit|message).)*$
 
     [FILTER]
         Name                aws
