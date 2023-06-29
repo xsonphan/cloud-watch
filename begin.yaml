@@ -288,10 +288,7 @@ data:
         Use_Kubelet         On
         Kubelet_Port        10250
         Buffer_Size         0
-    [FILTER]
-        Name                limit
-        Match               application.*
-        Limit               15
+
     
     [OUTPUT]
         Name                cloudwatch_logs
@@ -301,35 +298,35 @@ data:
         log_stream_prefix   ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
-        Flush               5
+
     [OUTPUT]
         Name                cloudwatch_logs
         Match               application.var.log.containers.hasura-indicator*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/hasura-indicator
-        log_stream_name     ${pod_name}
+        log_stream_name     ${POD_NAME}
         auto_create_group   true
         extra_user_agent    container-insights
-        Flush               5
+
     [OUTPUT]
         Name                cloudwatch_logs
         Match               application.var.log.containers.report*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/report-gen
-        log_stream_name     ${pod_name}
+        log_stream_name     ${POD_NAME}
         auto_create_group   true
         extra_user_agent    container-insights
-        Flush               5
+
 
     [OUTPUT]
         Name                cloudwatch_logs
         Match               application.var.log.containers.file-handler*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/file-handler
-        log_stream_name     ${pod_name}
+        log_stream_name     ${POD_NAME}
         auto_create_group   true
         extra_user_agent    container-insights
-        Flush               5
+
         
     [OUTPUT]
         Name                cloudwatch_logs
@@ -339,7 +336,7 @@ data:
         log_stream_name     ${POD_NAME}
         auto_create_group   true
         extra_user_agent    container-insights
-        Flush               5     
+   
         
     [OUTPUT]
         Name                cloudwatch_logs
@@ -349,7 +346,7 @@ data:
         log_stream_name     ${POD_NAME}
         auto_create_group   true
         extra_user_agent    container-insights
-         Flush               5   
+
     [OUTPUT]
         Name                cloudwatch_logs
         Match               application.var.log.containers.event-pump*
@@ -358,7 +355,6 @@ data:
         log_stream_name     ${POD_NAME}
         auto_create_group   true
         extra_user_agent    container-insights
-        Flush               5 
   
   dataplane-log.conf: |
     [INPUT]
