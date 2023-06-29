@@ -116,10 +116,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: spec.podName
             - name: HOST_NAME
               valueFrom:
                 fieldRef:
@@ -311,7 +307,7 @@ data:
         Match               application.var.log.containers.hasura-indicator*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/hasura-indicator
-        log_stream_name     ${POD_NAME}
+        log_stream_name     ${pod_name}
         auto_create_group   true
         extra_user_agent    container-insights
         Flush               5
@@ -320,7 +316,7 @@ data:
         Match               application.var.log.containers.report*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/report-gen
-        log_stream_name     ${POD_NAME}
+        log_stream_name     ${pod_name}
         auto_create_group   true
         extra_user_agent    container-insights
         Flush               5
@@ -330,7 +326,7 @@ data:
         Match               application.var.log.containers.file-handler*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/file-handler
-        log_stream_name     ${POD_NAME}
+        log_stream_name     ${pod_name}
         auto_create_group   true
         extra_user_agent    container-insights
         Flush               5
