@@ -292,7 +292,7 @@ data:
     [FILTER]
         Name                modify
         Match               application.var.log.containers.*
-        Remove_prefix       application.var.log.containers. 
+        Remove_regrex       application.var.log.containers. 
         
     [OUTPUT]
         Name                cloudwatch_logs
