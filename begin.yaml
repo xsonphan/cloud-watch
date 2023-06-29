@@ -115,11 +115,7 @@ spec:
             - name: HOST_IP
               valueFrom:
                 fieldRef:
-                  fieldPath: status.hostIP
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.podName    
+                  fieldPath: status.hostIP 
             - name: HOST_NAME
               valueFrom:
                 fieldRef:
@@ -285,6 +281,7 @@ data:
         Kube_Tag_Prefix     application.var.log.containers.
         Merge_Log           On
         Merge_Log_Key       log_processed
+        Kube_Tag_Prefix     application.var.log.containers
         K8S-Logging.Parser  On
         K8S-Logging.Exclude Off
         Labels              Off
@@ -292,7 +289,7 @@ data:
         Use_Kubelet         On
         Kubelet_Port        10250
         Buffer_Size         0
-
+        Regex               ^[^-]+-[^-]+-[^-]+-(?P<pod_name>[^\._]+)
     
     [OUTPUT]
         Name                cloudwatch_logs
