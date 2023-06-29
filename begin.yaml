@@ -289,11 +289,6 @@ data:
         Kubelet_Port        10250
         Buffer_Size         0
         
-    [FILTER]
-        Name                modify
-        Match               application.var.log.containers.*
-        Remove              application.var.log.containers. 
-        
     [OUTPUT]
         Name                cloudwatch_logs
         Match               application.*
