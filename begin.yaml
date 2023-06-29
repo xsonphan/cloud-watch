@@ -116,6 +116,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.podName    
             - name: HOST_NAME
               valueFrom:
                 fieldRef:
