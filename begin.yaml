@@ -310,7 +310,12 @@ data:
         Use_Kubelet         On
         Kubelet_Port        10250
         Buffer_Size         0
-    
+        
+    [FILTER]
+        Name                modify
+        Match               application.var.log.containers.*
+        Substring           log_stream_name 0 26
+        
     [OUTPUT]
         Name                cloudwatch_logs
         Match               application.*
