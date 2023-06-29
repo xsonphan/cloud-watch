@@ -288,7 +288,11 @@ data:
         Use_Kubelet         On
         Kubelet_Port        10250
         Buffer_Size         0
-        
+    [FILTER]
+      Name                limit
+      Match               application.*
+      Limit               15
+    
     [OUTPUT]
         Name                cloudwatch_logs
         Match               application.*
@@ -306,7 +310,7 @@ data:
         log_stream_prefix   ${Kubernetes.labels.pod_name}
         auto_create_group   true
         extra_user_agent    container-insights
-
+        Flush               5
     [OUTPUT]
         Name                cloudwatch_logs
         Match               application.var.log.containers.report*
@@ -315,7 +319,7 @@ data:
         log_stream_name     ${Kubernetes.labels.pod_name}
         auto_create_group   true
         extra_user_agent    container-insights
-
+        Flush               5
 
     [OUTPUT]
         Name                cloudwatch_logs
@@ -325,6 +329,7 @@ data:
         log_stream_prefix   ${HOST_NAME}-
         auto_create_group   true
         extra_user_agent    container-insights
+        Flush               5
         
     [OUTPUT]
         Name                cloudwatch_logs
