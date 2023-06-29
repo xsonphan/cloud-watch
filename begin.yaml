@@ -303,7 +303,7 @@ data:
         Match               application.var.log.containers.hasura-indicator*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/hasura-indicator
-        log_stream_prefix   ${HOST_NAME}-
+        log_stream_prefix   ${Kubernetes.labels.pod_name}
         auto_create_group   true
         extra_user_agent    container-insights
 
@@ -312,7 +312,7 @@ data:
         Match               application.var.log.containers.report*
         region              ${AWS_REGION}
         log_group_name      /aws/containerinsights/${CLUSTER_NAME}/report-gen
-        log_stream_prefix   ${HOST_NAME}-
+        log_stream_name     ${Kubernetes.labels.pod_name}
         auto_create_group   true
         extra_user_agent    container-insights
 
